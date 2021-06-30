@@ -1,0 +1,163 @@
+/*==============================================================*/
+/* Table: ACEPTACION                                            */
+/*==============================================================*/
+create table ACEPTACION (
+   ID_ACEPTACION        int                  not null,
+   ACEPTACION           varchar(20)             null,
+   constraint PK_ACEPTACION primary key nonclustered (ID_ACEPTACION)
+)
+go
+
+
+
+/*==============================================================*/
+/* Table: CONTRATO                                              */
+/*==============================================================*/
+create table CONTRATO (
+   ID_CONTRATO          int                  not null,
+   MODALIDAD            varchar(30)             null,
+   constraint PK_CONTRATO primary key nonclustered (ID_CONTRATO)
+)
+go
+
+
+
+/*==============================================================*/
+/* Table: ENCUESTA                                              */
+/*==============================================================*/
+create table ENCUESTA (
+   ID_ENCUESTA          int                  not null,
+   CALIFICACION         varchar(30)             null,
+   constraint PK_ENCUESTA primary key nonclustered (ID_ENCUESTA)
+)
+go
+
+
+/*==============================================================*/
+/* Table: HORARIO_TUTORIA                                       */
+/*==============================================================*/
+create table HORARIO_TUTORIA (
+   ID_HORARIO           int                  not null,
+   ID_MEDIOTURORIA      int                  not null,
+   ID_TUTORIA           int                  not null,
+   HORARIO              time             null,
+   FECHA_HORARIO        date             null,
+   DESCRIPCION          varchar(100)             null,
+   ENLACE               varchar(100)            null,
+   HORAS				int						null,
+ 
+   constraint PK_HORARIO_TUTORIA primary key nonclustered (ID_HORARIO)
+)
+go
+
+
+
+/*==============================================================*/
+/* Table: MEDIO_TUTORIA                                         */
+/*==============================================================*/
+create table MEDIO_TUTORIA (
+   ID_MEDIOTUTORIA      int                  not null,
+   NOMBRE_MEDIOTUTORIA  varchar(30)             null,
+   constraint PK_MEDIO_TUTORIA primary key nonclustered (ID_MEDIOTUTORIA)
+)
+go
+
+
+
+/*==============================================================*/
+/* Table: MODALIDAD                                             */
+/*==============================================================*/
+create table MODALIDAD (
+   ID_MODALIDAD         int                  not null,
+   MODALIDAD            varchar(20)             null,
+   constraint PK_MODALIDAD primary key nonclustered (ID_MODALIDAD)
+)
+go
+
+
+
+/*==============================================================*/
+/* Table: PAGO_TUTORIA                                          */
+/*==============================================================*/
+create table PAGO_TUTORIA (
+   ID_PAGO              int                  not null,
+   ID_TUTORIA           int                  null,
+   ID_TUTOR             int                  not null,
+   PRECIO_TUTORIA       float(2)             null,
+   DESCRIPCION_TUTORIA  varchar(40)             null,
+   constraint PK_PAGO_TUTORIA primary key nonclustered (ID_PAGO)
+)
+go
+
+
+
+/*==============================================================*/
+/* Table: PLAN_COMPRA                                           */
+/*==============================================================*/
+create table PLAN_COMPRA (
+   ID_PLANCOMPRA        int                  not null,
+   ID_MEDIOTUTORIA      int                  null,
+   ID_TUTOR             int                  null,
+   TIEMPO_INICIO        date	             null,
+   TIEMPO_FIN           date	             null,
+   VALOR                float(2)             null,
+   NUMERO_USUARIOS      int                  null,
+   constraint PK_PLAN_COMPRA primary key nonclustered (ID_PLANCOMPRA)
+)
+go
+
+
+
+/*==============================================================*/
+/* Table: TUTOR                                                 */
+/*==============================================================*/
+create table TUTOR (
+   ID_TUTOR             int                  not null,
+   ID_MODALIDAD         int                  null,
+   ID_CONTRATO          int                  null,
+   CEDULA_TUTOR         varchar(10)             null,
+   NOMBRE_TUTOR         varchar(40)             null,
+   APELLIDO_TUTOR       varchar(40)             null,
+   PROFESION_TUTOR      varchar(40)             null,
+   TELEFONO_TUTOR       varchar(10)             null,
+   CORREO_TUTOR         varchar(60)             null,
+   constraint PK_TUTOR primary key nonclustered (ID_TUTOR)
+)
+go
+
+
+
+
+/*==============================================================*/
+/* Table: TUTORADO                                              */
+/*==============================================================*/
+create table TUTORADO (
+   ID_TUTORADO          int                  not null,
+   CEDULA_TUTORADO      varchar(10)             null,
+   NOMBRE_TUTORADO      varchar(40)             null,
+   APELLIDO_TUTORADO    varchar(40)             null,
+   PROFESION_TUTORADO   varchar(50)             null,
+   TELEFONO_TUTORADO    varchar(10)             null,
+   CORREO_TUTORADO      varchar(60)             null,
+   PAIS_TUTORADO        varchar(50)             null,
+   PROVINCIA_TUTORADO   varchar(50)             null,
+   constraint PK_TUTORADO primary key nonclustered (ID_TUTORADO)
+)
+go
+
+
+
+
+/*==============================================================*/
+/* Table: TUTORIA                                               */
+/*==============================================================*/
+create table TUTORIA (
+   ID_TUTORIA           int                  not null,
+   ID_ACEPTACION        int                  null,
+   ID_TUTOR             int                  null,
+   ID_TUTORADO          int                  null,
+   ID_ENCUESTA          int                  null,
+   constraint PK_TUTORIA primary key nonclustered (ID_TUTORIA)
+)
+go
+
